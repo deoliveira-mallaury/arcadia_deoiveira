@@ -12,14 +12,13 @@
         - name: Log in to Docker Hub
           uses: docker/login-action@v1
           with:
-            username: ${{ secrets. }}
-            password: ${{ secrets. }}
+            username: ${{ secrets.DOCKER_HUB_USERNAME }}
+            password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN  }}
         - name: Build and push Docker image
           uses: docker/build-push-action@v2
           with:
             context: .
             push: true
             tags: mallauryprogra/arcadiaproject_deoliveira:v0.2,
-            GITHUB_TOKEN: ${{secrets.}}
 
 
