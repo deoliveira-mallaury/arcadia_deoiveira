@@ -1,0 +1,23 @@
+  name: Publish Docker image
+  on:
+    release:
+      types: [ published ]
+  jobs:
+    push_to_registry:
+      name: Push Docker image to Docker Hub
+      runs-on: ubuntu-latest
+      steps:
+        - name: Check out the repo
+          uses: actions/checkout@v2
+        - name: Log in to Docker Hub
+          uses: docker/login-action@v1
+          with:
+            username: ${{ secrets.mallauryprogra }}
+            password: ${{ secrets.dckr_pat_83j8DGC9ZAGQrkUKnS5e_zyCZgs }}
+        - name: Build and push Docker image
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            push: true
+            tags: mallauryprogra/arcadiaproject_deoliveira:v0.2
+
