@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ServicesController!{% endblock %}
+
+{% block body %}
+    <style>
+
+    </style>
+
+    <div class="example-wrapper">
+        <h1 class="text-center">Nos services</h1>
+        <div class="card w-80  m-3">
+            <div class="card-body">
+                <img src="{{ asset('images/imageZoo.jpg') }}"
+                     class="card-img-top mx-auto" alt=" ..."/>
+                <h5 class="card-title text-center">Restaurant</h5>
+            </div>
+        </div>
+        <div class="card w-80 m-3">
+            <div class="card-body">
+                <img src="{{ asset('images/imageZoo.jpg') }}"
+                     class="card-img-top mx-auto" alt=" ..."/>
+                <h5 class="card-title text-center">Visite guidée avec vétérinaire (gratuit)</h5>
+            </div>
+        </div>
+        <div class="card w-80 m-3">
+            <div class="card-body">
+                <img src="{{ asset('images/imageZoo.jpg') }}"
+                     class="card-img-top mx-auto" alt=" ..."/>
+                <h5 class="card-title text-center">Visite du zoo en petit train</h5>
+            </div>
+        </div>
+    </div>
+{% endblock %}

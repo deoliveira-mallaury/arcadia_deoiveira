@@ -1,0 +1,20 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+homepage:
+    path: /
+    controller: HomeController:index
+services:
+    path: /services
+    controller: HomeController:index
+habitats:
+    path: /habitats
+    controller: HomeController:index
+contact:
+    path: /contact
+    controller: HomeController:index
+login:
+    path: /login
+    controller: HomeController:index
