@@ -12,8 +12,8 @@
         - name: Log in to Docker Hub
           uses: docker/login-action@v1
           with:
-            username: ${{ secrets.mallauryprogra }}
-            password: ${{ secrets.dckr_pat_83j8DGC9ZAGQrkUKnS5e_zyCZgs }}
+            username: ${{ secrets. }}
+            password: ${{ secrets. }}
         - name: Build and push Docker image
           uses: docker/build-push-action@v2
           with:
