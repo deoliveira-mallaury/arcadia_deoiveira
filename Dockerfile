@@ -19,5 +19,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
-EXPOSE 9000
-CMD ["apache2-foreground"]
+EXPOSE 80
+#CMD ["apache2-foreground"]
