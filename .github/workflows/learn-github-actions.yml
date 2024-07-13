@@ -19,5 +19,7 @@
           with:
             context: .
             push: true
-            tags: mallauryprogra/arcadiaproject_deoliveira:v0.2
+            tags: mallauryprogra/arcadiaproject_deoliveira:v0.2,
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
 
