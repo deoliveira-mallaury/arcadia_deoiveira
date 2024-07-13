@@ -22,3 +22,4 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/u
 RUN git init \
     && git config --global user.email 'mallaury.de.oliveira.pro@gmail.com' \
     && git config --global user.name 'deoliveira-mallaury'
+EXPOSE 9000
