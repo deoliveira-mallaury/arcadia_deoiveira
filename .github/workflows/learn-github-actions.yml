@@ -19,6 +19,6 @@
           with:
             context: .
             push: true
-            tags: mallauryprogra/arcadiaproject_deoliveira:v0.2,
-
+            tags: mallauryprogra/arcadiaproject_deoliveira:latest,
+            
 
