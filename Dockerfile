@@ -19,7 +19,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
-RUN git init \
-    && git config --global user.email 'mallaury.de.oliveira.pro@gmail.com' \
-    && git config --global user.name 'deoliveira-mallaury'
 EXPOSE 9000
+CMD ["apache2-foreground"]
