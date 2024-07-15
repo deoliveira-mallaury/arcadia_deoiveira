@@ -12,8 +12,8 @@ RUN apt-get install -y bash \
     && docker-php-ext-enable apcu \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
-COPY build/php/opcache.ini /usr/local/etc/php/conf.d/
-COPY build/php/custom.ini /usr/local/etc/php/conf.d/
+COPY docker/build/php/opcache.ini /usr/local/etc/php/conf.d/
+COPY docker/build/php/custom.ini /usr/local/etc/php/conf.d/
 WORKDIR /var/www/symfony_docker
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
