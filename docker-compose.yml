@@ -7,7 +7,7 @@ services:
     #    command: php -S 0.0.0.0:9000 -t public
     build:
       context: .
-      dockerfile: ./docker/php.Dockerfile
+      dockerfile: Dockerfile
     ports:
       - '9000:9000'
     volumes:
@@ -20,7 +20,6 @@ services:
     image: nginx:latest
     build:
       context: .
-      dockerfile: ./docker/nginx.Dockerfile
     ports:
       - '8080:80'
     volumes:
@@ -39,7 +38,7 @@ services:
 #    env_file :
 #      ./app/back-end-api/.env.dist:
     volumes:
-      - ./docker/postgres:/var/lib/postgresql/data
+      - ./docker/build/postgres:/var/lib/postgresql/data
     ports:
       - 5432:5432
   mongo:
