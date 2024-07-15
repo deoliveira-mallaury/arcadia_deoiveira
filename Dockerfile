@@ -26,6 +26,6 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/u
 
 #CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/symfony_docker"]
 
-EXPOSE 9000 80
+EXPOSE 9000 8080
 CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
 
