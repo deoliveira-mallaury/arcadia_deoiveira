@@ -18,11 +18,13 @@ class HabitatsController extends AbstractController
             'controller_name' => 'HabitatsController',
         ]);
     }
+    
     #[Route('/new', name: 'app_habitats')]
     public function new(EntityManagerInterface $em)
     {
         $habitatsNames=['Savane', 'Jungle', 'Marais'];
-        $habitatsDescr=[
+        $habitatsDescr=
+        [
             'Des plaines arides, où vivent des animaux légendaires.',
             'Une jungle luxuriante abritant des espèces rares et sauvages',
             'Un écosystème riche en faune sauvage et en végétation luxuriante'
