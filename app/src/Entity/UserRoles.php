@@ -21,7 +21,7 @@ class UserRoles
     /**
      * @var Collection<int, User>
      */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'userRoles')]
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'role')]
     private Collection $users;
 
     public function __construct()
@@ -32,6 +32,13 @@ class UserRoles
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -58,7 +65,7 @@ class UserRoles
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->setUserRoles($this);
+            $user->setRole($this);
         }
 
         return $this;
@@ -68,8 +75,8 @@ class UserRoles
     {
         if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
-            if ($user->getUserRoles() === $this) {
-                $user->setUserRoles(null);
+            if ($user->getRole() === $this) {
+                $user->setRole(null);
             }
         }
 
