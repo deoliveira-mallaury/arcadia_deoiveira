@@ -1,119 +1,24 @@
-## This file is the entry point to configure your own services.
-## Files in the packages/ subdirectory configure your dependencies.
-#
-## Put parameters here that don't need to change on each machine where the app is deployed
-## https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
-#parameters:
-#
-#services:
-#    # default configuration for services in *this* file
-#    _defaults:
-#        autowire: true      # Automatically injects dependencies in your services.
-#        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-#
-#    # makes classes in src/ available to be used as services
-#    # this creates a service per class whose id is the fully-qualified class name
-#    App\:
-#        resource: '../src/'
-#        exclude:
-#            - '../src/DependencyInjection/'
-#            - '../src/Entity/'
-#            - '../src/Kernel.php'
-#
-#    # add more service definitions when explicit configuration is needed
-#    # please note that last definitions always *replace* previous ones
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-    annotations:
-        # Required to use Cloud Run multi-containers (preview feature)
-        run.googleapis.com/launch-stage: BETA
-        run.googleapis.com/description: sample tutorial service
-        # Externally available
-        run.googleapis.com/ingress: all
-        run.googleapis.com/ingress-status: all
-        run.googleapis.com/container-dependencies: "{nginx: [hello]}"
-    labels:
-        cloud.googleapis.com/location: europe-west9
-        commit-sha: 1e70ec9b1d343e5491086453e38bd5b8efd9948c
-        gcb-build-id: b8b660f4-fd91-4b96-adb8-cfec6f13763c
-        gcb-trigger-id: 6a7182d3-9208-444f-8beb-dd963fcb298a
-        gcb-trigger-region: global
-        managed-by: gcp-cloud-build-deploy-cloud-run
-        run.googleapis.com/satisfiesPzs: 'true'
-    name: arcadia-deoiveira
-    namespace: '689776044679'
-spec:
-    containers:
-        # A) Serving ingress container "nginx" listening at PORT 8080
-        # Main entrypoint of multi-container service.
-        # Source is stored in nginx_config secret in Secret Manager.
-        # Any pings to this container will proxy over to hello container at PORT 8888.
-        # https://cloud.google.com/run/docs/container-contract#port
-        - image: nginx
-          name: nginx
-          ports:
-              - name: http1
-                containerPort: 8080
-          resources:
-              limits:
-                  cpu: 500m
-                  memory: 256Mi
-              # Referencing declared volume below,
-              # Declaring volume to mount in current ingress container's filesystem
-              # https://cloud.google.com/run/docs/reference/rest/v2/Container#volumemount
-          volumeMounts:
-              - name: nginx-conf-secret
-                readOnly: true
-                mountPath: /etc/nginx/conf.d/
-          startupProbe:
-              timeoutSeconds: 240
-              periodSeconds: 240
-              failureThreshold: 1
-              tcpSocket:
-                  port: 8080
-    volumes:
-        - name: nginx-conf-secret
-          secret:
-              secretName: nginx_config
-              items:
-                  - key: latest
-                    path: default.conf
-    template:
-        metadata:
-            annotations:
-                autoscaling.knative.dev/maxScale: '100'
-                run.googleapis.com/client-name: gcloud
-                run.googleapis.com/client-version: 483.0.0
-                run.googleapis.com/startup-cpu-boost: 'true'
-            labels:
-                client.knative.dev/nonce: ekvvhbixre
-                commit-sha: 1e70ec9b1d343e5491086453e38bd5b8efd9948c
-                gcb-build-id: b8b660f4-fd91-4b96-adb8-cfec6f13763c
-                gcb-trigger-id: 6a7182d3-9208-444f-8beb-dd963fcb298a
-                gcb-trigger-region: global
-                managed-by: gcp-cloud-build-deploy-cloud-run
-                run.googleapis.com/startupProbeType: Default
-        spec:
-            containerConcurrency: 80
-            containers:
-                - image: europe-west9-docker.pkg.dev/arcadiaproject-429313/cloud-run-source-deploy/arcadia_deoiveira/arcadia-deoiveira:1e70ec9b1d343e5491086453e38bd5b8efd9948c
-                  name: placeholder-1
-                  ports:
-                      - containerPort: 9000
-                        name: http1
-                  resources:
-                      limits:
-                          cpu: 1000m
-                          memory: 512Mi
-                  startupProbe:
-                      failureThreshold: 1
-                      periodSeconds: 240
-                      tcpSocket:
-                          port: 9000
-                      timeoutSeconds: 240
-            serviceAccountName: 689776044679-compute@developer.gserviceaccount.com
-            timeoutSeconds: 300
-    traffic:
-        - latestRevision: true
-          percent: 100
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
