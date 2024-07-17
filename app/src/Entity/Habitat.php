@@ -21,8 +21,6 @@ class Habitat
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $comments_habitat = null;
 
     /**
      * @var Collection<int, Animal>
@@ -30,8 +28,6 @@ class Habitat
     #[ORM\OneToMany(targetEntity: Animal::class, mappedBy: 'habitat')]
     private Collection $animals;
 
-    #[ORM\ManyToOne(inversedBy: 'habitats')]
-    private ?Image $image = null;
 
     public function __construct()
     {
@@ -67,17 +63,6 @@ class Habitat
         return $this;
     }
 
-    public function getCommentsHabitat(): ?string
-    {
-        return $this->comments_habitat;
-    }
-
-    public function setCommentsHabitat(string $comments_habitat): static
-    {
-        $this->comments_habitat = $comments_habitat;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Animal>
@@ -109,15 +94,4 @@ class Habitat
         return $this;
     }
 
-    public function getImage(): ?Image
-    {
-        return $this->image;
-    }
-
-    public function setImage(?Image $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 }
