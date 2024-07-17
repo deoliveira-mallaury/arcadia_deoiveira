@@ -26,12 +26,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						{% if app.user %}
-							<li class="nav-item">
-								<span class="nav-link">Bienvenue
-									{{ app.user.username }}!</span>
-							</li>
-						{% endif %}
+
 
 						<li class="nav-item ">
 							<a class="nav-link {{ app.request.get('_route') == 'app_services' ? 'active' : '' }}" href="{{ path('services') }}">services</a>
@@ -45,13 +40,22 @@
 						<li class="nav-item ">
 							<a class="nav-link {{ app.request.get('_route') == 'app_contact' ? 'active' : '' }}" href="{{ path('contact') }}">Contact</a>
 						</li>
+						{# {% if app.user %}
+													<li class="nav-item ">
+														<a class="nav-link {{ app.request.get('_route') == 'app_logout' ? 'active' : '' }}" href="{{ path('logout') }}">déconnexion</a>
+													</li>
+												
+												{% else %} #}
 						<li class="nav-item ">
 							<a class="nav-link {{ app.request.get('_route') == 'app_login' ? 'active' : '' }}" href="{{ path('login') }}">Connexion</a>
 						</li>
+						{# {% endif %} #}
+
 					</ul>
 				</div>
 			</div>
 		</nav>
+
 		{% block body %}{% endblock %}
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
