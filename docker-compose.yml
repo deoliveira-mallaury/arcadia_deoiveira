@@ -6,7 +6,6 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: Dockerfile
     ports:
       - '9000:9000'
     volumes:
@@ -35,7 +34,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./docker/build/postgres:/var/lib/postgresql/data
     ports:
       - 5432:5432
 
