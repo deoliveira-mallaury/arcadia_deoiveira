@@ -22,15 +22,14 @@ Le directeur du zoo, José, souhaite moderniser l'expérience des visiteurs en i
 3. Récupérer image Docker : `docker pull mallauryprogra/arcadiaproject_deoliveira:latest`
 4. Construire image Docker : `docker build -t mallauryprogra/arcadiaproject_deoliveira:latest . `
 5. Pull différentes image du container Docker : `docker compose pull`
-
+6. Démarer application: `docker compose up -d`
 ### Instructions d'Installation
 Dans container docker php saisir commande :
- - composer install 
- - npm install
+ - `composer install` 
+ - `npm install`
 Pour accéder à la base de données PostgreSQL :
- -  Configurez les variables d'environnement dans `.env`.
-    Démarer application:
-     - `docker compose up -d`
+ -  Configurez les variables d'environnement dans `.env.local`.
+
 
 -  Exécutez le conteneur Docker : 
 - web-app = `http://localhost:8080` 
