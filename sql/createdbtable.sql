@@ -29,7 +29,8 @@ CREATE TABLE race (
 CREATE TABLE habitat (
     id AUTOINCREMENT PRIMARY KEY,
     name VARCHAR (50) NOT NULL,
-    description VARCHAR (50) NOT NULL
+    description VARCHAR (50) NOT NULL,
+    habitat_comment VARCHAR (50) NOT NULL
 );
 CREATE TABLE avis (
     id AUTOINCREMENT PRIMARY KEY,
@@ -37,6 +38,21 @@ CREATE TABLE avis (
     comment VARCHAR (50) NOT NULL,
     isVisible YESNO  NOT NULL
 );
+CREATE TABLE service (
+    id AUTOINCREMENT PRIMARY KEY,
+    name VARCHAR (50) NOT NULL,
+    description VARCHAR (50) NOT NULL
+);
 ALTER TABLE veterinary_report
-ADD animal_id INT NOT NULL,
-FOREIGN KEY (animal_id)  REFERENCES animal(id);
+    ADD animal_id INT NOT NULL,
+    ADD FOREIGN KEY (animal_id)  REFERENCES animal(id);
+
+ALTER TABLE user
+    ADD vet_report_id INT NOT NULL,
+    ADD FOREIGN KEY (vet_report_id) REFERENCES veterinary_report(id);
+
+ALTER TABLE animal
+    ADD habitat_id INT NOT NULL,
+    ADD race_id INT NOT NULL,
+    ADD FOREIGN KEY (habitat_id) REFERENCES habitat(id),
+    ADD FOREIGN KEY (race_id) REFERENCES race(id);
