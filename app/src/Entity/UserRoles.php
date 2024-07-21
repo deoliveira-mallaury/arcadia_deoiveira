@@ -15,8 +15,8 @@ class UserRoles
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column(length: 50)]
+    private ?string $label = null;
 
     /**
      * @var Collection<int, User>
@@ -41,14 +41,14 @@ class UserRoles
         return $this;
     }
 
-    public function getName(): ?string
+    public function getLabel(): ?string
     {
-        return $this->name;
+        return $this->label;
     }
 
-    public function setName(string $name): static
+    public function setLabel(string $label): static
     {
-        $this->name = $name;
+        $this->label = $label;
 
         return $this;
     }
