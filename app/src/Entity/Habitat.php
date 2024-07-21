@@ -15,11 +15,14 @@ class Habitat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $description = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $habitatComment = null;
 
 
     /**
@@ -59,6 +62,18 @@ class Habitat
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getHabitatComment(): ?string
+    {
+        return $this->habitatComment;
+    }
+
+    public function setHabitatComment(string $habitatComment): static
+    {
+        $this->habitatComment = $habitatComment;
 
         return $this;
     }

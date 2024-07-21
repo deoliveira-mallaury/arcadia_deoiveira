@@ -26,7 +26,7 @@ class UserType extends AbstractType
             ->add('lastname')
             ->add('role', EntityType::class, [
                 'class' => UserRoles::class,
-                'choice_label' => 'name',
+                'choice_label' => 'label',
             ])
         ;
     }
