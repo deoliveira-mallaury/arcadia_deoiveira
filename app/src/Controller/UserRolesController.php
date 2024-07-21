@@ -23,23 +23,18 @@ class UserRolesController extends AbstractController
     }
 
     #[Route('/new', name: 'app_user_roles_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager)
     {
-        $userRole = new UserRoles();
-        $form = $this->createForm(UserRolesType::class, $userRole);
-        $form->handleRequest($request);
+        $userLabels=['Administrateur', 'Vétérinaire', 'Employés'];
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($userRole);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_user_roles_index', [], Response::HTTP_SEE_OTHER);
+        foreach($userLabels as $userLabel){
+            $habitatsGen= new UserRoles();
+            $habitatsGen->setLabel($userLabel);
+            $entityManager->persist($habitatsGen);
         }
+        $entityManager->flush();
+        return $userLabels;
 
-        return $this->render('user_roles/new.html.twig', [
-            'user_role' => $userRole,
-            'form' => $form,
-        ]);
     }
 
     #[Route('/{id}', name: 'app_user_roles_show', methods: ['GET'])]

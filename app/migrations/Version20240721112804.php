@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240717205500 extends AbstractMigration
+final class Version20240721112804 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -31,7 +31,7 @@ final class Version20240717205500 extends AbstractMigration
         $this->addSql('CREATE TABLE animal (id INT NOT NULL, race_id INT NOT NULL, habitat_id INT NOT NULL, name VARCHAR(255) NOT NULL, condition VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_6AAB231F6E59D40D ON animal (race_id)');
         $this->addSql('CREATE INDEX IDX_6AAB231FAFFE2D26 ON animal (habitat_id)');
-        $this->addSql('CREATE TABLE habitat (id INT NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE habitat (id INT NOT NULL, name VARCHAR(50) NOT NULL, description VARCHAR(50) NOT NULL, habitat_comment VARCHAR(50) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE opinion (id INT NOT NULL, pseudo VARCHAR(50) NOT NULL, comment VARCHAR(50) NOT NULL, is_visible BOOLEAN NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE race (id INT NOT NULL, label VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE service (id INT NOT NULL, name VARCHAR(50) NOT NULL, description VARCHAR(50) NOT NULL, PRIMARY KEY(id))');
@@ -40,7 +40,7 @@ final class Version20240717205500 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_8D93D649BF5D8E2C ON "user" (vet_repport_id)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_IDENTIFIER_EMAIL ON "user" (email)');
         $this->addSql('CREATE TABLE user_roles (id INT NOT NULL, label VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE TABLE veterinary_repport (id INT NOT NULL, animal_id INT DEFAULT NULL, date_repport DATE NOT NULL, detail VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE veterinary_repport (id INT NOT NULL, animal_id INT DEFAULT NULL, date DATE NOT NULL, detail VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_1587F5F18E962C16 ON veterinary_repport (animal_id)');
         $this->addSql('CREATE TABLE messenger_messages (id BIGSERIAL NOT NULL, body TEXT NOT NULL, headers TEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, available_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, delivered_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_75EA56E0FB7336F0 ON messenger_messages (queue_name)');
