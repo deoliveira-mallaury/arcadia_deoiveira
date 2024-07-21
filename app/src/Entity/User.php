@@ -32,10 +32,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 60)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 60)]
     private ?string $lastname = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
@@ -80,9 +80,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-//        $roles[] = 'ROLE_USER'; // a non-empty role (for example "ROLE_USER")
-        // guarantee every user at least has ROLE_USER
-
         return array_unique($roles);
     }
 
@@ -92,7 +89,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(string $role): static
     {
         $roles = $this->getRoles();
-//        dd($roles);
         $roles[] = $role;
         $this->roles = $roles;
         return $this;
