@@ -26,12 +26,18 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticators:
+                - App\Security\LoginFormAuthenticator
             form_login:
+#                default_target_path: app_administrator
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
             logout:
                 path: app_logout
+            custom_authenticator: App\Security\LoginFormAuthenticator
+                # where to redirect after logout
+                # target: app_any_route
 
 
                 # where to redirect after logout
@@ -48,7 +54,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
+     - { path: ^/admin, roles: ROLE_ADMIN }
+     - { path: ^/vet, roles: ROLE_VETERINARIAN }
+     - { path: ^/employee, roles: ROLE_EMPLOYEE }
     # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

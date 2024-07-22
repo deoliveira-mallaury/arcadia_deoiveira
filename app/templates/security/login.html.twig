@@ -4,27 +4,38 @@
 {# ... #}
 
 {% block body %}
-	{% if error %}
-		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-	{% endif %}
-	{% if app.user %}
-		<div class="mb-3">
-			You are logged in as
-			{{ app.user.email }},
-			<a href="{{ path('app_logout') }}">Logout</a>
-		</div>
-	{% endif %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as
+            {{ app.user.email }},
+            <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <h5 class="text-center my-3">Connexion</h5>
 
-	<form action="{{ path('app_login') }}" method="post">
-		<label for="username">Email:</label>
-		<input type="text" id="username" name="_username" value="{{ last_username }}" required>
+    <form class="loginForm border border-dark rounded m-3 p-3" method="post" action="{{ path('login') }}" style="height: 70vh;">
+        <div class="loginForm-container container">
+            <div class="m-2 text-center email">
+                <label for="inputLoginEmail" class="form-label ">Adresse mail</label>
+                <input type="email" name="_username" value="{{ last_username }}" class="form-control w-80 mx-auto" id="inputLoginEmail" aria-describedby="emailHelp">
+            </div>
+            <div class="m-2 text-center " id="passGroup">
+                <label for=" inputLoginPass" class=" form-label">Mot de passe</label>
+                <div class="input-group">
+                    <input type="password" name="_password" class="form-control" id="inputLoginPass"/>
+                    <span class="input-group-text" id="basic-addon1">
+						<i class="bi bi-eye-slash" id="togglePassword"></i>
+					</span>
+                </div>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="d-grid gap-2 m-2 col-3 mx-auto btnSubmitLoginform ">
+                <button type="submit" class="btn btn-primary text-center" id="btnSubmitLoginform">Soumettre</button>
+            </div>
+        </div>
+    </form>
 
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="_password" required>
-
-		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-
-		<button type="submit">login</button>
-	</form>
 {% endblock %}
