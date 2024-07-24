@@ -18,7 +18,14 @@ jobs:
           project_id: arcadiaproject-429313
           service_account_key: $HOME/gcp-key.json  # Secure access from secret
           export_default_credentials: true
+      - uses: 'google-github-actions/auth@v2'
+        with:
+           service_account: 'arcadia-deoiveira@my-project.iam.gserviceaccount.com'
 
+      - uses: 'google-github-actions/create-cloud-deploy-release@v1'
+        with:
+            name: 'example-app'
+            
       - name: Configure Docker for GCP
         run: gcloud auth configure-docker
 
