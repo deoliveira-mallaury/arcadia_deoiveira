@@ -12,11 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create gcp-key.json (Secure Access)
-        # This step retrieves the secret key securely and creates the gcp-key.json file.
-        run: |
-          echo "${{ secrets.GCP_SA_KEY_BASE64 }}" | base64 --decode > $HOME/gcp-key.json
-
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@main
         with:
