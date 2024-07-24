@@ -7,6 +7,9 @@ import './bootstrap.js';
  */
 // loads the jquery package from node_modules
 import $ from 'jquery';
+import { Turbo } from '@hotwired/turbo';
+Turbo.start();
+
 // import the function from greet.js (the .js extension is optional)
 // ./ (or ../) means to look for a local file
 import loginformValidator from './loginformValidator.js';

@@ -10,6 +10,10 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
+    <turbo-frame id="content">
+        <a href="{{ path('app_user_new') }}"turbo-visit-control="reload">This block is scoped, the rest of the page will not change if you click here!</a>
+
+    </turbo-frame>
 
     This friendly message is coming from:
     <ul>
@@ -17,4 +21,5 @@
         <li>Your template at <code>/var/www/symfony_docker/templates/administrator/index.html.twig</code></li>
     </ul>
 </div>
+
 {% endblock %}
