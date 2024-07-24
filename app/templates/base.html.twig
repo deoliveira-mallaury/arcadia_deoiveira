@@ -29,7 +29,7 @@
 
 
 				<li class="nav-item ">
-					<a class="nav-link {{ app.request.get('_route') == 'app_services' ? 'active' : '' }}" href="{{ path('services') }}">services</a>
+					<a class="nav-link {{ app.request.get('_route') == 'app_services' ? 'active' : '' }}" href="{{ path('services') }}">Services</a>
 				</li>
 				<li class="nav-item ">
 					<a class="nav-link {{ app.request.get('_route') == 'app_habitats' ? 'active' : '' }}" href="{{ path('habitats') }}">Habitats</a>
@@ -42,7 +42,7 @@
 				</li>
 				{% if app.user %}
 				<li class="nav-item ">
-					<a class="nav-link">déconnexion</a>
+					<a class="nav-link {{ app.request.get('_route') == 'app_logout' ? 'active' : '' }}" href="{{ path('app_logout') }}">Déconnexion</a>
 				</li>
 
 				{% else %}
