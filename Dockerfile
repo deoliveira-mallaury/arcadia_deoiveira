@@ -2,7 +2,7 @@ FROM php:8.3-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y nginx bash openssl curl ca-certificates \
-    && apt-get install -y libpq-dev \
+    && apt-get install -y libpq-dev --no-install-recommends\
     && apt-get upgrade -y \
     && apt-get install -y nodejs npm wget \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
@@ -17,21 +17,22 @@ RUN apt-get update && apt-get install -y nginx bash openssl curl ca-certificates
 WORKDIR /var/www/symfony_docker
 
 # Copy application files
-COPY . /var/www/symfony_docker
+COPY .. /var/www/symfony_docker
 
 # Copy configurations
-COPY docker/build/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY docker/build/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
-COPY docker/build/php/opcache.ini /usr/local/etc/php/conf.d/
-COPY docker/build/php/custom.ini /usr/local/etc/php/conf.d/
+COPY ../docker/build/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ../docker/build/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ../docker/build/php/opcache.ini /usr/local/etc/php/conf.d/
+COPY ../docker/build/php/custom.ini /usr/local/etc/php/conf.d/
 
-COPY ./init-user-db.sh /docker-entrypoint-initdb.d/
+COPY ../init-user-db.sh /docker-entrypoint-initdb.d/
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
-EXPOSE  8080
+EXPOSE  9000
+
 #CMD ["php-fpm", "-F"]
 CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
