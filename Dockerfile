@@ -32,6 +32,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install Symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
-EXPOSE 9000
-CMD ["php-fpm", "-F"]
-#CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
+#EXPOSE 9000
+EXPOSE 8080
+#CMD ["php-fpm", "-F"]
+CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
