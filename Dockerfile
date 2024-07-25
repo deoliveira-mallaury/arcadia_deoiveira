@@ -26,11 +26,16 @@ COPY ./docker/build/php/opcache.ini /usr/local/etc/php/conf.d/
 COPY ./docker/build/php/custom.ini /usr/local/etc/php/conf.d/
 
 COPY ./init-user-db.sh /docker-entrypoint-initdb.d/
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
+
+# Copy composer.json and package.json to the docker image
+COPY app/composer.json /var/www/composer.json
+COPY app/package.json /var/www/package.jso
 RUN composer install
 RUN npm install
 # EXPOSE  9000
