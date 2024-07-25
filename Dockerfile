@@ -21,11 +21,11 @@ COPY . /var/www/symfony
 
 # Copy configurations
 # COPY ../docker/build/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY ../docker/build/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
-COPY ../docker/build/php/opcache.ini /usr/local/etc/php/conf.d/
+COPY ./docker/build/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./docker/build/php/opcache.ini /usr/local/etc/php/conf.d/
 COPY ../docker/build/php/custom.ini /usr/local/etc/php/conf.d/
 
-COPY ../init-user-db.sh /docker-entrypoint-initdb.d/
+COPY ./init-user-db.sh /docker-entrypoint-initdb.d/
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
