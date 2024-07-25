@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y nginx bash openssl curl ca-certificates
 WORKDIR /var/www/symfony
 
 # Copy application files
-COPY .. /var/www/symfony
+COPY . /var/www/symfony
 
 # Copy configurations
 # COPY ../docker/build/nginx/default.conf /etc/nginx/conf.d/default.conf
@@ -31,4 +31,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install Symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
+
+EXPOSE  9000
+
+#CMD ["php-fpm", "-F"]
 
