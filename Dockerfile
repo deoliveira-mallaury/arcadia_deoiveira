@@ -23,7 +23,7 @@ COPY . /var/www/symfony
 # COPY ../docker/build/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./docker/build/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./docker/build/php/opcache.ini /usr/local/etc/php/conf.d/
-COPY ../docker/build/php/custom.ini /usr/local/etc/php/conf.d/
+COPY ./docker/build/php/custom.ini /usr/local/etc/php/conf.d/
 
 COPY ./init-user-db.sh /docker-entrypoint-initdb.d/
 # Install Composer
@@ -32,7 +32,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install Symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
-EXPOSE  9000
+# EXPOSE  9000
 
 #CMD ["php-fpm", "-F"]
 
