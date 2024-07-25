@@ -3,5 +3,5 @@ build:
     web: Dockerfile
     worker: docker/build/nginx/nginx.Dockerfile
 run:
-  web: php -S 0.0.0.0:$PORT -t public/
+  web: php -S 0.0.0.0:$PORT -t app/public/
   worker: nginx -g 'daemon off;'
