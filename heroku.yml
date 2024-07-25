@@ -5,7 +5,3 @@ build:
 run:
   web: php -S 0.0.0.0:$PORT -t public/
   worker: nginx -g 'daemon off;'
-build:
-  docker:
-    web: Dockerfile
-    worker: worker/Dockerfile
