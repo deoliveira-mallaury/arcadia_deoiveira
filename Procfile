@@ -1,1 +1,1 @@
-web: heroku-php-nginx -C nginx_app.conf public/
+web: docker/build/nginx/build_nginx.sh
