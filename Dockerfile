@@ -31,7 +31,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install Symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
-
+RUN composer install
+RUN npm install
 # EXPOSE  9000
 
 #CMD ["php-fpm", "-F"]
