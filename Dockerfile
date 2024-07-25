@@ -34,8 +34,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
 # Copy composer.json and package.json to the docker image
-COPY app/composer.json 
-COPY app/package.json 
+COPY app/composer.json /var/www/composer.json
+COPY app/package.json /var/www/package.json
 RUN composer install
 RUN npm install
 # EXPOSE  9000
